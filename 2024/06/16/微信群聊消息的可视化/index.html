@@ -1,0 +1,257 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>微信群聊消息的可视化操作 | Clannad's blog</title><meta name="author" content="Clannad"><meta name="copyright" content="Clannad"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="最近突然有个想法，想把和对象在群聊中的发的信息做一个可视化当做父亲节小小的惊喜。以下是我的过程。 这是做出来的效果图。 ​ 实现这个效果一共分为两部，分别是微信群聊消息的获取和群聊消息的可视化。   一、微信群聊消息的获取 推荐使用一个叫留痕的软件，下载完后扫描自己的本地微信文件，后在好友界面点击导出聊天记录为CSV即可。 ​​ ​到处后可以看到导出的文件路径我这里的是一般是你Memotrace安">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信群聊消息的可视化操作">
+<meta property="og:url" content="http://example.com/2024/06/16/%E5%BE%AE%E4%BF%A1%E7%BE%A4%E8%81%8A%E6%B6%88%E6%81%AF%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96/index.html">
+<meta property="og:site_name" content="Clannad&#39;s blog">
+<meta property="og:description" content="最近突然有个想法，想把和对象在群聊中的发的信息做一个可视化当做父亲节小小的惊喜。以下是我的过程。 这是做出来的效果图。 ​ 实现这个效果一共分为两部，分别是微信群聊消息的获取和群聊消息的可视化。   一、微信群聊消息的获取 推荐使用一个叫留痕的软件，下载完后扫描自己的本地微信文件，后在好友界面点击导出聊天记录为CSV即可。 ​​ ​到处后可以看到导出的文件路径我这里的是一般是你Memotrace安">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/head.jpg">
+<meta property="article:published_time" content="2024-06-16T04:02:03.000Z">
+<meta property="article:modified_time" content="2024-06-19T08:04:03.441Z">
+<meta property="article:author" content="Clannad">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/head.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/06/16/%E5%BE%AE%E4%BF%A1%E7%BE%A4%E8%81%8A%E6%B6%88%E6%81%AF%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '微信群聊消息的可视化操作',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-06-19 16:04:03'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.1.1"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/../../img/head.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/../../img/background.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Clannad's blog"><span class="site-name">Clannad's blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">微信群聊消息的可视化操作</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-06-16T04:02:03.000Z" title="发表于 2024-06-16 12:02:03">2024-06-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-06-19T08:04:03.441Z" title="更新于 2024-06-19 16:04:03">2024-06-19</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="微信群聊消息的可视化操作"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>最近突然有个想法，想把和对象在群聊中的发的信息做一个可视化当做父亲节小小的惊喜。以下是我的过程。</p>
+<p>这是做出来的效果图。</p>
+<p>​<img src="/2024/06/16/%E5%BE%AE%E4%BF%A1%E7%BE%A4%E8%81%8A%E6%B6%88%E6%81%AF%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96/1.jpg" title alt data-align="center"></p>
+<p>实现这个效果一共分为两部，分别是微信群聊消息的获取和群聊消息的可视化。</p>
+<img src="/2024/06/16/%E5%BE%AE%E4%BF%A1%E7%BE%A4%E8%81%8A%E6%B6%88%E6%81%AF%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96/2.png" title alt data-align="center">
+
+<p>一、微信群聊消息的获取</p>
+<p>推荐使用一个叫<a target="_blank" rel="noopener" href="https://memotrace.cn/" title="留痕">留痕</a>的软件，下载完后扫描自己的本地微信文件，后在好友界面点击导出聊天记录为CSV即可。</p>
+<p>​<img src="/2024/06/16/%E5%BE%AE%E4%BF%A1%E7%BE%A4%E8%81%8A%E6%B6%88%E6%81%AF%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96/3.png" title alt data-align="center">​</p>
+<p>​到处后可以看到导出的文件路径我这里的是一般是你Memotrace安装位置的.\data\聊天记录(记上后面会用)。</p>
+<p>二、可视处理</p>
+<p>使用python进行可视化操作，这里我使用的是pyecharts库。以下是可视化代码。</p>
+<p>（1）数据预处理：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">##读取群聊文件的地址，这里改成你导出的群聊文件地址</span><br><span class="line">fileurl=r&quot;你的群聊文件地址&quot;</span><br><span class="line"></span><br><span class="line">##数据预处理</span><br><span class="line">def data_process(url):</span><br><span class="line">    df=pd.read_csv(url)</span><br><span class="line">    df = df[df[&#x27;Type&#x27;] == 1]  # 只保留文本聊天</span><br><span class="line">    ##保留特定群员信息</span><br><span class="line">    df=df[(df[&#x27;NickName&#x27;]==&quot;你的名字&quot;)| (df[&#x27;NickName&#x27;]==&#x27;她的名字&#x27;)] ##这里换成你想保留人的群聊名字</span><br><span class="line">    selected_columns = [&#x27;IsSender&#x27;, &#x27;StrContent&#x27;, &#x27;StrTime&#x27;]</span><br><span class="line">    df = df[selected_columns]  # 只取&#x27;IsSender&#x27;,&#x27;StrContent&#x27;,&#x27;StrTime&#x27;列</span><br><span class="line">    df[&#x27;StrTime&#x27;] = pd.to_datetime(df[&#x27;StrTime&#x27;])</span><br><span class="line">    df[&#x27;Date&#x27;] = df[&#x27;StrTime&#x27;].dt.date</span><br><span class="line">    return df</span><br></pre></td></tr></table></figure>
+
+<p>这里只留下文本类聊天消息，可以筛选特定的群友，这里取Issender（发件人）、StrCoutent（消息）和StrTime（时间）三列数据。下面是数据处理后的格式。</p>
+<img src="file:///C:/Users/Administrator/AppData/Roaming/marktext/images/2024-06-19-15-12-16-image.png" title alt data-align="inline">
+
+<p>（2）数据的可视化处理</p>
+<p>            数据可视化过程，这里画了四个图聊天频率月份图（直方图）、饼图、聊天日分布图（直方图）、聊天词云图这里就直接把完整的代码贴出。结果如文首所示。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line">import pyecharts as pc</span><br><span class="line">from pyecharts import options as opts</span><br><span class="line">import jieba</span><br><span class="line"></span><br><span class="line">##数据预处理</span><br><span class="line">def data_process(url):</span><br><span class="line">    df=pd.read_csv(url)</span><br><span class="line">    df = df[df[&#x27;Type&#x27;] == 1]  # 只保留文本聊天</span><br><span class="line">    ##保留特定群员信息</span><br><span class="line">    df=df[(df[&#x27;NickName&#x27;]==&quot;你的名字&quot;)| (df[&#x27;NickName&#x27;]==&#x27;她的名字&#x27;)] ##这里换成你想保留人的群聊名字</span><br><span class="line">    selected_columns = [&#x27;IsSender&#x27;, &#x27;StrContent&#x27;, &#x27;StrTime&#x27;]</span><br><span class="line">    df = df[selected_columns]  # 只取&#x27;IsSender&#x27;,&#x27;StrContent&#x27;,&#x27;StrTime&#x27;列</span><br><span class="line">    df[&#x27;StrTime&#x27;] = pd.to_datetime(df[&#x27;StrTime&#x27;])</span><br><span class="line">    df[&#x27;Date&#x27;] = df[&#x27;StrTime&#x27;].dt.date</span><br><span class="line">    return df</span><br><span class="line"></span><br><span class="line">##读取群聊文件的地址，这里改成你导出的群聊文件地址</span><br><span class="line">fileurl=r&quot;你的群聊文件地址&quot;</span><br><span class="line"></span><br><span class="line">df=data_process(fileurl)</span><br><span class="line"></span><br><span class="line">def zhuzhuangtu():</span><br><span class="line"># 每天聊天频率柱状图</span><br><span class="line">    chat_frequency = df[&#x27;Date&#x27;].value_counts().sort_index()</span><br><span class="line">    total_messages = len(df)</span><br><span class="line">    date_labels = [date.strftime(&#x27;%m-%d&#x27;) for date in chat_frequency.index]</span><br><span class="line">    bar = pc.charts.Bar()</span><br><span class="line">    bar.add_xaxis(date_labels)</span><br><span class="line">    bar.add_yaxis(&#x27;频率&#x27;, list(chat_frequency))</span><br><span class="line">    bar.render(&quot;./data/zhuzhuantu.html&quot;)</span><br><span class="line">    return bar</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> # 双方信息数量对比</span><br><span class="line">def pie():</span><br><span class="line">    sent_by_me = df[df[&#x27;IsSender&#x27;] == 1][&#x27;StrContent&#x27;]</span><br><span class="line">    sent_by_others = df[df[&#x27;IsSender&#x27;] == 0][&#x27;StrContent&#x27;]</span><br><span class="line">    count_sent_by_me = len(sent_by_me)</span><br><span class="line">    count_sent_by_others = len(sent_by_others)</span><br><span class="line">    labels = [&#x27;你的名字&#x27;, &#x27;她的名字&#x27;]</span><br><span class="line">    sizes = [count_sent_by_me, count_sent_by_others]</span><br><span class="line">    pie=pc.charts.Pie()</span><br><span class="line">    pie.add(&quot;&quot;,[list(z) for z in zip(labels,sizes)])</span><br><span class="line">    # 添加标签</span><br><span class="line">    pie.set_series_opts(label_opts=opts.LabelOpts(formatter=&quot;&#123;b&#125;: &#123;c&#125;&quot;))</span><br><span class="line">    return pie</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">##每小时聊天记录</span><br><span class="line"># 根据一天中的每一个小时进行统计聊天频率，并生成柱状图</span><br><span class="line">def xiaoshitu():</span><br><span class="line"></span><br><span class="line">    df[&#x27;DateTime&#x27;] = pd.to_datetime(df[&#x27;StrTime&#x27;])</span><br><span class="line">    df[&#x27;Hour&#x27;] = df[&#x27;DateTime&#x27;].dt.hour</span><br><span class="line"></span><br><span class="line">    hourly_counts = df[&#x27;Hour&#x27;].value_counts().sort_index().reset_index()</span><br><span class="line">    hourly_counts.columns = [&#x27;Hour&#x27;, &#x27;Frequency&#x27;]</span><br><span class="line">    bar1=pc.charts.Bar()</span><br><span class="line">    bar1.add_xaxis(hourly_counts[&#x27;Hour&#x27;].to_list())</span><br><span class="line">    bar1.add_yaxis(&#x27;频率&#x27;,hourly_counts[&#x27;Frequency&#x27;].to_list())</span><br><span class="line">    return bar1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">##绘制词云</span><br><span class="line">def ciyun():</span><br><span class="line"></span><br><span class="line">    # 获取词云内容</span><br><span class="line">    words = df[&#x27;StrContent&#x27;].to_string()</span><br><span class="line">    ##分词</span><br><span class="line"></span><br><span class="line">    # 定义要去除的词列表</span><br><span class="line">    filter_list = [&#x27;的&#x27;, &#x27;了&#x27;, &#x27;是&#x27;, &#x27;在&#x27;, &#x27;和&#x27;, &#x27;我&#x27;, &#x27;之&#x27;,&#x27;我们&#x27;, &#x27;你们&#x27;, &#x27;他们&#x27;, &#x27;有&#x27;, &#x27;也&#x27;, &#x27;不&#x27;, &#x27;人&#x27;, &#x27;这&#x27;, &#x27;个&#x27;, &#x27;你&#x27;,</span><br><span class="line">                    &#x27;上&#x27;, &#x27;到&#x27;, &#x27;们&#x27;,&#x27;小&#x27;,&#x27;中&#x27;, &#x27;为&#x27;, &#x27;上&#x27;, &#x27;们&#x27;, &#x27;都&#x27;, &#x27;会&#x27;, &#x27;他&#x27;, &#x27;地&#x27;, &#x27;那&#x27;, &#x27;要&#x27;, &#x27;就&#x27;, &#x27;以&#x27;, &#x27;说&#x27;, &#x27;来&#x27;, &#x27;可以&#x27;, &#x27;对&#x27;,</span><br><span class="line">                    &#x27;出&#x27;, &#x27;从&#x27;, &#x27;到&#x27;, &#x27;……&#x27;, &#x27;呀&#x27;, &#x27;吧&#x27;]</span><br><span class="line">    words = jieba.cut(words,cut_all=False)</span><br><span class="line">    filtered_words = [word for word in words if word not in filter_list and word.isalpha()]</span><br><span class="line">    # words=&#x27; &#x27;.join(filtered_words )</span><br><span class="line">    # print(type(filtered_words))</span><br><span class="line">    #计算词频</span><br><span class="line">    word_dict = &#123;&#125;</span><br><span class="line">    for word in filtered_words:</span><br><span class="line">        if len(word) &gt; 1:</span><br><span class="line">            if word in word_dict:</span><br><span class="line">                word_dict[word] += 1</span><br><span class="line">            else:</span><br><span class="line">                word_dict[word] = 1</span><br><span class="line">    # 将词频统计结果转换为列表</span><br><span class="line">    word_list = [(word, value) for word, value in word_dict.items()]</span><br><span class="line">    # print(word_list)</span><br><span class="line"></span><br><span class="line">    # 绘制词云</span><br><span class="line">    wordcloud = pc.charts.WordCloud()</span><br><span class="line">    wordcloud.add(&quot;&quot;, word_list, word_size_range=[20,100])</span><br><span class="line">    return wordcloud</span><br><span class="line"></span><br><span class="line">#主函数</span><br><span class="line">if __name__==&#x27;__main__&#x27;:</span><br><span class="line">    zhuzhuang=zhuzhuangtu()</span><br><span class="line">    pietu=pie()</span><br><span class="line">    xiaoshi=xiaoshitu()</span><br><span class="line">    ciyuntu=ciyun()</span><br><span class="line">    #</span><br><span class="line">    zhuzhuang.set_global_opts(title_opts=&#123;&quot;text&quot;: &quot;聊天月份频率图&quot;&#125;)</span><br><span class="line">    pietu.set_global_opts(title_opts=&#123;&quot;text&quot;: &quot;聊天数量饼图&quot;&#125;)</span><br><span class="line">    xiaoshi.set_global_opts(title_opts=&#123;&quot;text&quot;: &quot;聊天全天分布图&quot;&#125;)</span><br><span class="line">    ciyuntu.set_global_opts(title_opts=&#123;&quot;text&quot;: &quot;词云&quot;&#125;)</span><br><span class="line">    page = pc.charts.Page(layout=pc.charts.Page.SimplePageLayout)</span><br><span class="line">    page.add(zhuzhuang)</span><br><span class="line">    page.add(pietu)</span><br><span class="line">    page.add(xiaoshi)</span><br><span class="line">    page.add(ciyuntu)</span><br><span class="line"></span><br><span class="line">    # 设置页面标题</span><br><span class="line">    page.page_title=&quot;聊天信息总结&quot;</span><br><span class="line"></span><br><span class="line">    # 保存页面</span><br><span class="line">    page.render(&quot;你要保存的地址+文件名.html&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>       感谢阅读</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Clannad</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/06/16/%E5%BE%AE%E4%BF%A1%E7%BE%A4%E8%81%8A%E6%B6%88%E6%81%AF%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96/">http://example.com/2024/06/16/%E5%BE%AE%E4%BF%A1%E7%BE%A4%E8%81%8A%E6%B6%88%E6%81%AF%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Clannad's blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/../../img/head.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2024/06/19/My-first-post/" title="开篇"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">开篇</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/../../img/head.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Clannad</div><div class="author-info__description">这个人很懒什么都没留下</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Clannad47"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Clannad47" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/19/My-first-post/" title="开篇">开篇</a><time datetime="2024-06-19T04:17:22.000Z" title="发表于 2024-06-19 12:17:22">2024-06-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/16/%E5%BE%AE%E4%BF%A1%E7%BE%A4%E8%81%8A%E6%B6%88%E6%81%AF%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96/" title="微信群聊消息的可视化操作">微信群聊消息的可视化操作</a><time datetime="2024-06-16T04:02:03.000Z" title="发表于 2024-06-16 12:02:03">2024-06-16</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Clannad</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
